@@ -33,7 +33,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {};
   globalsSelect: {};
@@ -91,7 +91,7 @@ export interface AdminAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name: string;
   role?: ('viewer' | 'member') | null;
   updatedAt: string;
@@ -110,9 +110,9 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
-  user?: (string | null) | User;
+  user?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -156,7 +156,7 @@ export interface Media {
  * via the `definition` "admins".
  */
 export interface Admin {
-  id: string;
+  id: number;
   name: string;
   role?: ('super-admin' | 'content-manager') | null;
   updatedAt: string;
@@ -175,13 +175,13 @@ export interface Admin {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   subtitle?: string | null;
   /**
    * Background image for the hero section
    */
-  image?: (string | null) | Media;
+  image?: (number | null) | Media;
   link?: string | null;
   linkLabel?: string | null;
   content: {
@@ -203,7 +203,7 @@ export interface Page {
     | {
         category: string;
         title: string;
-        thumbnail?: (string | null) | Media;
+        thumbnail?: (number | null) | Media;
         url: string;
         id?: string | null;
       }[]
@@ -216,7 +216,7 @@ export interface Page {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
@@ -227,7 +227,7 @@ export interface Page {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   excerpt?: string | null;
   category: 'blog' | 'news' | 'press-release' | 'tutorial';
@@ -250,22 +250,22 @@ export interface Post {
     | {
         category: string;
         title: string;
-        thumbnail?: (string | null) | Media;
+        thumbnail?: (number | null) | Media;
         url: string;
         id?: string | null;
       }[]
     | null;
   slug?: string | null;
-  authors?: (string | Admin)[] | null;
+  authors?: (number | Admin)[] | null;
   publishedOn: string;
-  featuredImage?: (string | null) | Media;
+  featuredImage?: (number | null) | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
@@ -276,37 +276,37 @@ export interface Post {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'admins';
-        value: string | Admin;
+        value: number | Admin;
       } | null)
     | ({
         relationTo: 'pages';
-        value: string | Page;
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null);
   globalSlug?: string | null;
   user:
     | {
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       }
     | {
         relationTo: 'admins';
-        value: string | Admin;
+        value: number | Admin;
       };
   updatedAt: string;
   createdAt: string;
@@ -316,15 +316,15 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user:
     | {
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       }
     | {
         relationTo: 'admins';
-        value: string | Admin;
+        value: number | Admin;
       };
   key?: string | null;
   value?:
@@ -344,7 +344,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
